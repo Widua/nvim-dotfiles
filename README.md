@@ -42,6 +42,14 @@ definitions, declarations, references, implementations, actions, and symbols.
 tests and can create a new test skeleton. From a test it finds the corresponding
 production class. Other filetypes fall back to the LSP type-definition action.
 
+## Statusline Context
+
+Java and Kotlin buffers show the Gradle module and package with icons, for example:
+
+```text
+󰉋 app  󰏗 com.example.feature
+```
+
 ## Custom Plugins
 
 - [widua/nvim-intellij-lsp](https://github.com/widua/nvim-intellij-lsp)
