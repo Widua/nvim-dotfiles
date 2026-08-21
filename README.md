@@ -32,9 +32,15 @@ and an IntelliJ server under `~/.local/share/intellij-server`.
 | `<leader>oa` / `<leader>os` | Ask / select with OpenCode |
 | `go` / `goo` | Send a visual selection / line to OpenCode |
 
-When an LSP is attached: `gd`, `gD`, `gr`, `gi`, `ga`, `gO`, `gW`, and `gt` navigate
-definitions, declarations, references, implementations, actions, symbols, and tests;
+When an LSP is attached: `gd`, `gD`, `gr`, `gi`, `ga`, `gO`, and `gW` navigate
+definitions, declarations, references, implementations, actions, and symbols.
 `<leader>rr` renames and `<leader>th` toggles inlay hints.
+
+## Test Navigation
+
+`gt` is a custom Java/Kotlin test navigator. From production code it lists matching
+tests and can create a new test skeleton. From a test it finds the corresponding
+production class. Other filetypes fall back to the LSP type-definition action.
 
 ## Custom Plugins
 
