@@ -1,9 +1,11 @@
 local githubPlugin = 'https://github.com/'
-vim.pack.add {
+local localGradle = vim.fn.expand '~/NeovimLuaProjects/gradle-nvim'
+
+local plugins = {
   { src = githubPlugin .. 'NMAC427/guess-indent.nvim' },
   { src = githubPlugin .. 'nvim-lua/plenary.nvim' },
   { src = githubPlugin .. 'chomosuke/typst-preview.nvim' },
-  --  { src = githubPlugin .. 'widua/nvim-intellij-lsp' },
+  { src = githubPlugin .. 'widua/nvim-intellij-lsp' },
   { src = githubPlugin .. 'L3MON4D3/LuaSnip' },
   { src = githubPlugin .. 'nvim-telescope/telescope.nvim' },
   { src = githubPlugin .. 'nvim-telescope/telescope-fzf-native.nvim' },
@@ -27,5 +29,13 @@ vim.pack.add {
   { src = githubPlugin .. 'j-hui/fidget.nvim' },
   { src = githubPlugin .. 'nickjvandyke/opencode.nvim' },
   { src = githubPlugin .. 'folke/snacks.nvim' },
-  { src = 'file://~/Development/nvim-intellij-lsp' },
 }
+
+if vim.uv.fs_stat(localGradle) then
+  vim.opt.rtp:prepend(localGradle)
+  vim.cmd 'runtime plugin/gradle.lua'
+else
+  table.insert(plugins, { src = githubPlugin .. 'widua/gradle-nvim' })
+end
+
+vim.pack.add(plugins)

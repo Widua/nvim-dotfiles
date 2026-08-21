@@ -3,6 +3,7 @@ local plugin = require('which-key')
 plugin.setup {
     delay = 0,
     icons = {
+      group = '',
       mappings = vim.g.have_nerd_font,
       keys = vim.g.have_nerd_font and {} or {
         Up = '<Up> ',
@@ -41,5 +42,7 @@ plugin.setup {
       { '<leader>s', group = '[S]earch' },
       { '<leader>t', group = '[T]oggle' },
       { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
+      { '<leader>o', group = '</> Opencode' },
+      { '<leader>g', group = ' Gradle' },
     },
   }

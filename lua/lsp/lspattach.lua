@@ -9,6 +9,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     local builtin = require 'telescope.builtin'
+    local test_navigation = require 'lsp.test_navigation'
 
     map('<leader>rr', vim.lsp.buf.rename, 'Rename')
     map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
@@ -18,7 +19,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     map('gO', builtin.lsp_document_symbols, 'Open Document Symbols')
     map('gW', builtin.lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')
-    map('gt', builtin.lsp_type_definitions, '[G]oto [T]ype Definition')
+
+    map('gt', function()
+      test_navigation.goto_test(event.buf, builtin.lsp_type_definitions)
+    end, '[G]oto [T]est')
 
     local client = vim.lsp.get_client_by_id(event.data.client_id)
     if not client then
