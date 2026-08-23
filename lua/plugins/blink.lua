@@ -10,7 +10,18 @@ blink.setup {
   },
 
   completion = {
-    documentation = { auto_show = false, auto_show_delay_ms = 500 },
+    documentation = {
+      auto_show = true,
+      auto_show_delay_ms = 500,
+      treesitter_highlighting = true,
+      window = {
+        max_width = 80,
+        max_height = 20,
+        border = 'rounded',
+        winblend = 5,
+        scrollbar = true,
+      },
+    },
   },
 
   sources = {
@@ -26,7 +37,7 @@ blink.setup {
 
   snippets = { preset = 'luasnip' },
 
-  fuzzy = { implementation = 'lua' },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
 
   signature = { enabled = true },
 }
