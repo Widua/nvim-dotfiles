@@ -9,6 +9,7 @@ local servers = {
   gradle_ls = {},
   kotlin_lsp = {},
   ts_ls = {},
+  qmlls = {},
   lua_ls = {
     settings = {
       Lua = {
