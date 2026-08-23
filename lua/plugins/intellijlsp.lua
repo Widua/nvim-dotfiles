@@ -2,7 +2,6 @@ local intellij = require 'intellij-lsp'
 
 intellij.setup {
   accept_eula = true,
-  jdk = '~/.sdkman/candidates/java/26.0.1-librca/',
   gradle_annotation_sources = true,
   file_templates = {
     { name = 'Class', path = '~/.config/nvim/templates/intellij/Class.java', language = 'java' },
