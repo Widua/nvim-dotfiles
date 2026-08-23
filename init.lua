@@ -14,7 +14,6 @@ require 'plugins.todocomments'
 require 'plugins.harpoon'
 require 'plugins.lspconfig'
 require 'plugins.opencode'
-require 'plugins.intellijlsp'
 require 'plugins.snacks'
 require 'plugins.gradle'
 

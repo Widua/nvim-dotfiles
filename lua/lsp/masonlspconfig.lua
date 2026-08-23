@@ -1,5 +1,22 @@
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
+local function kotlin_location_handler(err, result, ctx, config)
+  if result then
+    local locations = vim.islist(result) and result or { result }
+    result = vim.tbl_filter(function(location)
+      local uri = location.uri or location.targetUri or ''
+      return not vim.startswith(uri, 'jar://') or uri:match '!/.*%.kts?$' or uri:match '!/.*%.java$'
+    end, locations)
+
+    if vim.tbl_isempty(result) then
+      vim.notify('Kotlin LSP returned a binary location without navigable source', vim.log.levels.INFO)
+      return
+    end
+  end
+
+  vim.lsp.handlers[ctx.method](err, result, ctx, config)
+end
+
 local servers = {
   gopls = {},
   lemminx = {},
@@ -7,7 +24,14 @@ local servers = {
   pylsp = {},
   vue_ls = {},
   gradle_ls = {},
-  kotlin_lsp = {},
+  kotlin_lsp = {
+    handlers = {
+      ['textDocument/definition'] = kotlin_location_handler,
+      ['textDocument/declaration'] = kotlin_location_handler,
+      ['textDocument/implementation'] = kotlin_location_handler,
+      ['textDocument/references'] = kotlin_location_handler,
+    },
+  },
   ts_ls = {},
   qmlls = {},
   lua_ls = {
@@ -22,7 +46,12 @@ local servers = {
 }
 
 require('mason-tool-installer').setup {
-  ensure_installed = { 'stylua' },
+  ensure_installed = {
+    'stylua',
+    'jdtls',
+    'java-debug-adapter',
+    'java-test',
+  },
 }
 
 for server_name, server in pairs(servers) do

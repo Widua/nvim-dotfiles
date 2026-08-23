@@ -11,9 +11,9 @@ Leader and local leader are both `<Space>`.
 - A Nerd Font (optional, for icons)
 - Language toolchains as needed: Java/JDK, Gradle, Kotlin, Node.js, Go, and Python
 
-Most LSP servers and `stylua` are installed through Mason. Java support expects
-a JDK; install its IntelliJ server with `:IntellijInstall`. Managed IntelliJ
-server builds live under Neovim's data directory at `intellij-lsp/servers/`.
+Most LSP servers and `stylua` are installed through Mason. Java support uses
+`nvim-jdtls` with Mason-managed `jdtls`, Java debug, and Java test bundles, and
+requires JDK 21 or newer to run the language server.
 
 ## Custom Mappings
 
@@ -53,5 +53,4 @@ Java and Kotlin buffers show the Gradle module and package with icons, for examp
 
 ## Custom Plugins
 
-- [widua/nvim-intellij-lsp](https://github.com/widua/nvim-intellij-lsp)
 - [widua/gradle-nvim](https://github.com/widua/gradle-nvim)

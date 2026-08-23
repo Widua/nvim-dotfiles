@@ -10,12 +10,26 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     local builtin = require 'telescope.builtin'
     local test_navigation = require 'lsp.test_navigation'
+    local location = function(native, telescope)
+      return function()
+        local clients = vim.lsp.get_clients { bufnr = event.buf }
+        local needs_native = vim.iter(clients):any(function(lsp_client)
+          return lsp_client.name == 'jdtls' or lsp_client.name == 'kotlin_lsp'
+        end)
+
+        if needs_native then
+          native()
+        else
+          telescope()
+        end
+      end
+    end
 
     map('<leader>rr', vim.lsp.buf.rename, 'Rename')
     map('ga', vim.lsp.buf.code_action, '[G]oto Code [A]ction', { 'n', 'x' })
-    map('gr', builtin.lsp_references, '[G]oto [R]eferences')
-    map('gi', builtin.lsp_implementations, '[G]oto [I]mplementation')
-    map('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
+    map('gr', location(vim.lsp.buf.references, builtin.lsp_references), '[G]oto [R]eferences')
+    map('gi', location(vim.lsp.buf.implementation, builtin.lsp_implementations), '[G]oto [I]mplementation')
+    map('gd', location(vim.lsp.buf.definition, builtin.lsp_definitions), '[G]oto [D]efinition')
     map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
     map('gO', builtin.lsp_document_symbols, 'Open Document Symbols')
     map('gW', builtin.lsp_dynamic_workspace_symbols, 'Open Workspace Symbols')

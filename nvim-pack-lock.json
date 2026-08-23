@@ -56,9 +56,13 @@
       "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
-    "nvim-intellij-lsp": {
-      "rev": "b3f5e340ba896d274c8ef135d87b5c514fff5e04",
-      "src": "https://github.com/widua/nvim-intellij-lsp"
+    "nvim-dap": {
+      "rev": "9e848e09a697ee95302a3ef2dd43fd6eb709e570",
+      "src": "https://github.com/mfussenegger/nvim-dap"
+    },
+    "nvim-jdtls": {
+      "rev": "6e9d953f0b82bccdb834cfde0e893f3119c22592",
+      "src": "https://github.com/mfussenegger/nvim-jdtls"
     },
     "nvim-lspconfig": {
       "rev": "bff1bd61cb1455040533201ca1edf1e84efa578f",

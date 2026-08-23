@@ -4,8 +4,7 @@ gradle.setup {
   sync = {
     enabled = true,
     clients = {
-      intellij = true,
-      jdtls = false,
+      jdtls = true,
       kotlin_lsp = true,
     },
   },

@@ -1,6 +1,5 @@
 local githubPlugin = 'https://github.com/'
 local localGradle = vim.fn.expand '~/NeovimLuaProjects/gradle-nvim'
-local localIntellij = vim.fn.expand '~/NeovimLuaProjects/nvim-intellij-lsp'
 
 local plugins = {
   { src = githubPlugin .. 'NMAC427/guess-indent.nvim' },
@@ -27,15 +26,11 @@ local plugins = {
   { src = githubPlugin .. 'mason-org/mason-lspconfig.nvim' },
   { src = githubPlugin .. 'WhoIsSethDaniel/mason-tool-installer.nvim' },
   { src = githubPlugin .. 'j-hui/fidget.nvim' },
+  { src = githubPlugin .. 'mfussenegger/nvim-dap' },
+  { src = githubPlugin .. 'mfussenegger/nvim-jdtls' },
   { src = githubPlugin .. 'nickjvandyke/opencode.nvim' },
   { src = githubPlugin .. 'folke/snacks.nvim' },
 }
-
-if vim.uv.fs_stat(localIntellij) then
-  vim.opt.rtp:prepend(localIntellij)
-else
-  table.insert(plugins, { src = githubPlugin .. 'widua/nvim-intellij-lsp' })
-end
 
 if vim.uv.fs_stat(localGradle) then
   vim.opt.rtp:prepend(localGradle)
