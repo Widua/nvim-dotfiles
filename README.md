@@ -11,8 +11,9 @@ Leader and local leader are both `<Space>`.
 - A Nerd Font (optional, for icons)
 - Language toolchains as needed: Java/JDK, Gradle, Kotlin, Node.js, Go, and Python
 
-LSP servers and `stylua` are installed through Mason. Java support expects a JDK
-and an IntelliJ server under `~/.local/share/intellij-server`.
+Most LSP servers and `stylua` are installed through Mason. Java support expects
+a JDK; install its IntelliJ server with `:IntellijInstall`. Managed IntelliJ
+server builds live under Neovim's data directory at `intellij-lsp/servers/`.
 
 ## Custom Mappings
 
